@@ -1,0 +1,4 @@
+const API_CONFIG = {
+  MASTER_BASE_URL: "http://192.168.1.102:5000",
+  AGENT_BASE_URL: "http://192.168.1.102:7000"
+};

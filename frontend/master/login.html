@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login - Scooter Share</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <main class="page-container">
+    <section class="form-card">
+      <a class="top-link" href="../index.html">← Back to Home</a>
+
+      <p class="eyebrow">Master Pi Login</p>
+      <h1>Admin Login</h1>
+
+      <p class="subtitle">
+        Only admin accounts can log in from the Master Pi control panel.
+      </p>
+
+      <form id="master-login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Enter admin username"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Enter admin password"
+            required
+          />
+        </div>
+
+        <button class="primary-button" type="submit">
+          Login as Admin
+        </button>
+      </form>
+
+      <div id="master-login-message" class="message"></div>
+    </section>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/masterAuth.js"></script>
+</body>
+</html>

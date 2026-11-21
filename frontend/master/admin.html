@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Scooter Share</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <main class="dashboard-page">
+    <header class="dashboard-header">
+      <div>
+        <p class="eyebrow">Master Pi Admin</p>
+        <h1>Admin Dashboard</h1>
+        <p id="admin-welcome" class="subtitle">Loading admin information...</p>
+      </div>
+
+      <button id="logout-button" class="danger-button" type="button">
+        Logout
+      </button>
+    </header>
+
+    <section class="panel">
+      <div class="section-title-row">
+        <div>
+          <h2>Scooter Management</h2>
+          <p class="small-note">
+            View, add, modify, delete, and report scooters with issues.
+          </p>
+        </div>
+
+        <button id="refresh-scooters-button" class="secondary-button" type="button">
+          Refresh Scooters
+        </button>
+      </div>
+
+      <div id="admin-scooter-list" class="card-grid"></div>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel">
+        <h2>Add / Update Scooter</h2>
+
+        <form id="scooter-form">
+          <div class="form-group">
+            <label for="scooter-id">Scooter ID</label>
+            <input id="scooter-id" type="text" placeholder="Example: S006" required />
+          </div>
+
+          <div class="form-group">
+            <label for="scooter-make">Make</label>
+            <input id="scooter-make" type="text" placeholder="Example: Suzuki" required />
+          </div>
+
+          <div class="form-group">
+            <label for="scooter-colour">Colour</label>
+            <input id="scooter-colour" type="text" placeholder="Example: Green" required />
+          </div>
+
+          <div class="form-group">
+            <label for="scooter-location">Location</label>
+            <input id="scooter-location" type="text" placeholder="Example: RMIT Vietnam SGS" required />
+          </div>
+
+          <div class="form-group">
+            <label for="scooter-latitude">Latitude</label>
+            <input id="scooter-latitude" type="number" step="any" placeholder="Example: 10.729367" required />
+          </div>
+
+          <div class="form-group">
+            <label for="scooter-longitude">Longitude</label>
+            <input id="scooter-longitude" type="number" step="any" placeholder="Example: 106.693128" required />
+          </div>
+
+          <div class="form-group">
+            <label for="scooter-cost">Cost Per Minute</label>
+            <input id="scooter-cost" type="number" step="0.01" min="0" placeholder="Example: 0.60" required />
+          </div>
+
+          <div class="form-group">
+            <label for="scooter-status">Status</label>
+            <select id="scooter-status">
+              <option value="Available">Available</option>
+              <option value="Booked">Booked</option>
+              <option value="Occupying">Occupying</option>
+              <option value="To Be Repaired">To Be Repaired</option>
+              <option value="Under Repair">Under Repair</option>
+              <option value="Unavailable">Unavailable</option>
+            </select>
+          </div>
+
+          <div class="action-row">
+            <button class="primary-button" type="submit">Save Scooter</button>
+            <button id="clear-scooter-form-button" class="secondary-button" type="button">
+              Clear Form
+            </button>
+          </div>
+        </form>
+      </article>
+
+      <article class="panel">
+        <h2>Report Scooter Issue</h2>
+
+        <form id="admin-report-form">
+          <div class="form-group">
+            <label for="report-scooter-id">Scooter ID</label>
+            <input id="report-scooter-id" type="text" placeholder="Example: S001" required />
+          </div>
+
+          <div class="form-group">
+            <label for="issue-description">Issue Description</label>
+            <textarea id="issue-description" placeholder="Describe the scooter issue" required></textarea>
+          </div>
+
+          <button class="primary-button" type="submit">
+            Submit Issue Report
+          </button>
+        </form>
+
+        <div id="report-result-box" class="info-box">
+          <h2>Email + Map Status</h2>
+          <p class="small-note">
+            Submit an issue report to notify engineers and share the scooter location.
+          </p>
+          <div id="report-result-content" class="empty-state">
+            No issue report submitted yet.
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel">
+        <div class="section-title-row">
+          <div>
+            <h2>Customers</h2>
+            <p class="small-note">View basic customer information and balance.</p>
+          </div>
+
+          <button id="refresh-customers-button" class="secondary-button" type="button">
+            Refresh Customers
+          </button>
+        </div>
+
+        <div id="customer-list" class="table-container"></div>
+      </article>
+
+      <article class="panel">
+        <div class="section-title-row">
+          <div>
+            <h2>Usage History</h2>
+            <p class="small-note">View completed scooter usage records.</p>
+          </div>
+
+          <button id="refresh-usage-button" class="secondary-button" type="button">
+            Refresh Usage
+          </button>
+        </div>
+
+        <div id="usage-history-list" class="table-container"></div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-title-row">
+        <div>
+          <h2>Usage Report</h2>
+          <p class="small-note">
+            Generate scooter usage report by day or by week.
+          </p>
+        </div>
+
+        <div class="action-row">
+          <select id="usage-report-group">
+            <option value="day">By Day</option>
+            <option value="week">By Week</option>
+          </select>
+
+          <button id="refresh-usage-report-button" class="secondary-button" type="button">
+            Refresh Report
+          </button>
+        </div>
+      </div>
+
+      <div id="usage-report-summary" class="card-grid"></div>
+      <div id="usage-report-chart" class="table-container"></div>
+    </section>
+
+    <div id="admin-message" class="message"></div>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

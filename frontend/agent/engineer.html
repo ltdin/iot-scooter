@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Engineer Dashboard - Scooter Share</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <main class="dashboard-page">
+    <header class="dashboard-header">
+      <div>
+        <p class="eyebrow">Agent Pi Engineer</p>
+        <h1>Engineer Dashboard</h1>
+        <p id="engineer-welcome" class="subtitle">Loading engineer information...</p>
+      </div>
+
+      <button id="logout-button" class="danger-button" type="button">
+        Logout
+      </button>
+    </header>
+
+    <section class="panel">
+      <div class="section-title-row">
+        <div>
+          <h2>Reported Scooters</h2>
+          <p class="small-note">
+            View scooters reported with issues. Select one to view repair details, unlock, lock, or submit repair results.
+          </p>
+        </div>
+
+        <button id="refresh-reports-button" class="secondary-button" type="button">
+          Refresh Reports
+        </button>
+      </div>
+
+      <div id="reports-list" class="card-grid"></div>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel">
+        <h2>Selected Report</h2>
+
+        <div id="selected-report-box" class="empty-state">
+          No report selected yet.
+        </div>
+
+        <p class="small-note">
+          Select a reported scooter above to view the repair details here.
+        </p>
+      </article>
+
+      <article class="panel">
+        <h2>Scooter Location</h2>
+
+        <div id="location-box" class="empty-state">
+          Select a report to view scooter location details.
+        </div>
+
+        <p class="small-note">
+          Google Maps location links are shown when location data is available.
+        </p>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel">
+        <h2>Repair Unlock / Lock</h2>
+
+        <div class="form-group">
+          <label for="repair-scooter-id">Scooter ID</label>
+          <input
+            id="repair-scooter-id"
+            type="text"
+            placeholder="Example: S001"
+            readonly
+          />
+        </div>
+
+        <div class="action-row">
+          <button id="engineer-unlock-button" class="primary-button" type="button">
+            Show Unlock QR
+          </button>
+
+          <button id="engineer-lock-button" class="secondary-button" type="button">
+            Show Lock QR
+          </button>
+        </div>
+
+        <p class="small-note">
+          Select a report, then show the QR code and scan it using the Raspberry Pi camera.
+        </p>
+
+        <div id="engineer-qr-section" class="data-card" style="display: none; margin-top: 1rem;">
+          <h3 id="engineer-qr-title">Engineer QR Code</h3>
+          <p id="engineer-qr-instruction" class="small-note">
+            Show this QR code to the Raspberry Pi camera.
+          </p>
+          <div id="engineer-qr-code" style="margin-top: 1rem;"></div>
+          <p id="engineer-qr-text" class="small-note"></p>
+        </div>
+      </article>
+
+      <article class="panel">
+        <h2>Submit Repair Result</h2>
+
+        <form id="repair-result-form">
+          <div class="form-group">
+            <label for="repair-report-id">Report ID</label>
+            <input
+              id="repair-report-id"
+              type="number"
+              placeholder="Example: 1"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="repair-notes">Repair Notes</label>
+            <textarea
+              id="repair-notes"
+              placeholder="Describe what was repaired"
+              required
+            ></textarea>
+          </div>
+
+          <button class="primary-button" type="submit">
+            Submit Repair Result
+          </button>
+        </form>
+      </article>
+    </section>
+
+    <div id="engineer-message" class="message"></div>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="../js/engineer.js"></script>
+</body>
+</html>

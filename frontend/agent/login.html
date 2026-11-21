@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Login - Scooter Share</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <main class="page-container">
+    <section class="form-card">
+      <a class="top-link" href="../index.html">← Back to Home</a>
+
+      <p class="eyebrow">Agent Pi Login</p>
+      <h1>Login</h1>
+
+      <p class="subtitle">
+        Customers and engineers can log in here. Admin accounts must use the Master Pi.
+      </p>
+
+      <form id="agent-login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Enter username"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Enter password"
+            required
+          />
+        </div>
+
+        <button class="primary-button" type="submit">
+          Login
+        </button>
+      </form>
+
+      <div id="login-message" class="message"></div>
+
+      <p class="small-note">
+        New customer?
+        <a class="inline-link" href="register.html">Register here</a>
+      </p>
+    </section>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/agentAuth.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register Customer - Scooter Share</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <main class="page-container">
+    <section class="form-card">
+      <a class="top-link" href="../index.html">← Back to Home</a>
+
+      <p class="eyebrow">Customer Registration</p>
+      <h1>Create Account</h1>
+
+      <p class="subtitle">
+        Register a new customer account to book and use scooters.
+      </p>
+
+      <form id="register-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            placeholder="Enter username"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Enter password"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="first_name">First Name</label>
+          <input
+            id="first_name"
+            name="first_name"
+            type="text"
+            placeholder="Enter first name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="last_name">Last Name</label>
+          <input
+            id="last_name"
+            name="last_name"
+            type="text"
+            placeholder="Enter last name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder="Enter phone number"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Enter email address"
+            required
+          />
+        </div>
+
+        <button class="primary-button" type="submit">
+          Register
+        </button>
+      </form>
+
+      <div id="register-message" class="message"></div>
+
+      <p class="small-note">
+        Already have an account?
+        <a class="inline-link" href="login.html">Login here</a>
+      </p>
+    </section>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/agentAuth.js"></script>
+</body>
+</html>

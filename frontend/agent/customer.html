@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Dashboard - Scooter Share</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <main class="dashboard-page">
+    <header class="dashboard-header">
+      <div>
+        <p class="eyebrow">Agent Pi Customer</p>
+        <h1>Customer Dashboard</h1>
+        <p id="customer-welcome" class="subtitle">Loading customer information...</p>
+      </div>
+
+      <button id="logout-button" class="danger-button" type="button">
+        Logout
+      </button>
+    </header>
+
+    <section class="dashboard-grid">
+      <article class="panel">
+        <h2 style="margin-bottom: 1rem;">Account Balance</h2>
+
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+          "
+        >
+          <div>
+            <p
+              style="
+                margin: 0 0 0.35rem 0;
+                font-size: 0.95rem;
+                color: #64748b;
+                font-weight: 600;
+              "
+            >
+              Current Balance
+            </p>
+
+            <p
+              id="balance-display"
+              class="balance-text"
+              style="margin: 0; line-height: 1;"
+            >
+              $0.00
+            </p>
+          </div>
+
+          <button
+            id="refresh-balance-button"
+            class="secondary-button"
+            type="button"
+            title="Refresh balance"
+            aria-label="Refresh balance"
+            style="
+              width: 48px;
+              height: 48px;
+              min-width: 48px;
+              border-radius: 12px;
+              padding: 0;
+              font-size: 1.4rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            ↻
+          </button>
+        </div>
+
+        <form id="top-up-form" class="compact-form">
+          <label for="top-up-amount">Top up amount</label>
+          <div class="inline-form-row">
+            <input
+              id="top-up-amount"
+              type="number"
+              min="1"
+              step="1"
+              placeholder="Amount"
+            />
+            <button class="primary-button" type="submit">Top Up</button>
+          </div>
+        </form>
+
+        <p id="top-up-message" class="message"></p>
+      </article>
+
+      <article class="panel">
+        <h2>Current Booking</h2>
+        <div id="current-booking-box" class="empty-state">
+          No active booking selected yet.
+        </div>
+
+        <div id="booking-qr-section" class="data-card" style="display: none; margin-top: 1rem;">
+          <h3 id="booking-qr-title">Scooter QR Code</h3>
+          <p id="booking-qr-instruction" class="small-note">
+            Show this QR code to the Raspberry Pi camera.
+          </p>
+          <div id="booking-qr-code" style="margin-top: 1rem;"></div>
+          <p id="booking-unlock-code" class="small-note"></p>
+        </div>
+
+        <div class="action-row">
+          <button id="cancel-booking-button" class="secondary-button" type="button">
+            Cancel Booking
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-title-row">
+        <div>
+          <h2>Available Scooters</h2>
+          <p class="small-note">
+            Select a scooter to book. A booked or occupied scooter should not be bookable.
+          </p>
+        </div>
+
+        <button id="refresh-scooters-button" class="secondary-button" type="button">
+          Refresh Scooters
+        </button>
+      </div>
+
+      <div id="scooter-list" class="card-grid"></div>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel">
+        <h2>QR Unlock / Return</h2>
+
+        <form id="scooter-action-form" class="compact-form">
+          <div class="form-group">
+            <label for="action-scooter-id">Scooter ID</label>
+            <input
+              id="action-scooter-id"
+              type="text"
+              placeholder="Example: S001"
+              required
+            />
+          </div>
+
+          <div class="action-row">
+            <button id="unlock-button" class="primary-button" type="button">
+              Show Unlock QR
+            </button>
+            <button id="lock-button" class="secondary-button" type="button">
+              Show Lock / Return QR
+            </button>
+          </div>
+        </form>
+
+        <p class="small-note">
+          Use these buttons for camera-based QR unlock and return.
+        </p>
+      </article>
+
+      <article class="panel">
+        <h2>Credential Unlock / Lock</h2>
+
+        <form id="credential-action-form" class="compact-form">
+          <div class="form-group">
+            <label for="credential-scooter-id">Scooter ID</label>
+            <input
+              id="credential-scooter-id"
+              type="text"
+              placeholder="Example: S001"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="credential-username">Username</label>
+            <input
+              id="credential-username"
+              type="text"
+              placeholder="Customer username"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="credential-password">Password</label>
+            <input
+              id="credential-password"
+              type="password"
+              placeholder="Customer password"
+              required
+            />
+          </div>
+
+          <div class="action-row">
+            <button id="credential-unlock-button" class="primary-button" type="button">
+              Unlock with Credentials
+            </button>
+            <button id="credential-lock-button" class="secondary-button" type="button">
+              Lock with Credentials
+            </button>
+          </div>
+        </form>
+
+        <p class="small-note">
+          This covers the username/password unlock and return requirement.
+        </p>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel">
+        <h2>Report Scooter Issue</h2>
+
+        <form id="report-form">
+          <div class="form-group">
+            <label for="report-scooter-id">Scooter ID</label>
+            <input
+              id="report-scooter-id"
+              type="text"
+              placeholder="Example: S001"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="issue-description">Issue Description</label>
+            <textarea
+              id="issue-description"
+              placeholder="Describe the scooter issue"
+              required
+            ></textarea>
+          </div>
+
+          <button class="primary-button" type="submit">
+            Submit Report
+          </button>
+        </form>
+      </article>
+    </section>
+
+    <div id="customer-message" class="message"></div>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="../js/customer.js"></script>
+</body>
+</html>
